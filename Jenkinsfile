@@ -65,5 +65,19 @@ pipeline {
             }
         }
 
+        stage('Initialize version') {
+            steps {
+                gitlabCommitStatus(name: 'Initialize version') {
+                    script {
+                        image_version = "${hash_commit}"
+                        if (env.gitlabTargetBranch != 'master') {
+                            image_version += "-SNAPSHOT"
+                        }
+                        echo "Image version : ${image_version}"
+                    }
+                }
+            }
+        }
+
     }
 }
