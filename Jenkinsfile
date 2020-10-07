@@ -3,10 +3,11 @@
 pipeline {
     agent any
     environment {
-        namespace = "Hermes"
+        namespace = "lefilou"
         app_name = "secret-keeper"
         hash_commit = "${env.GIT_COMMIT}".substring(0, 7)
         image_version = ""
+        docker_registry_credentials = "docker_preprod"
     }
 
     tools {
@@ -26,10 +27,25 @@ pipeline {
     }
 
     stages {
+
         stage('print env') {
             steps {
                 script {
                     sh 'printenv'
+                }
+            }
+        }
+
+        stage('Initialize version') {
+            steps {
+                gitlabCommitStatus(name: 'Initialize version') {
+                    script {
+                        image_version = "${hash_commit}"
+                        if (env.gitlabTargetBranch != 'master') {
+                            image_version += "-SNAPSHOT"
+                        }
+                        echo "Image version : ${image_version}"
+                    }
                 }
             }
         }
@@ -65,17 +81,32 @@ pipeline {
             }
         }
 
-        stage('Initialize version') {
+        stage('Build image') {
             steps {
-                gitlabCommitStatus(name: 'Initialize version') {
+                gitlabCommitStatus(name: 'Build image') {
                     script {
-                        image_version = "${hash_commit}"
-                        if (env.gitlabTargetBranch != 'master') {
-                            image_version += "-SNAPSHOT"
-                        }
-                        echo "Image version : ${image_version}"
+                        dockerImage = docker.build("${namespace}/${app_name}:${image_version}")
                     }
                 }
+            }
+        }
+
+        stage('Push image') {
+            steps {
+                gitlabCommitStatus(name: "Push image as ${image_version}") {
+                    script {
+                        docker.withRegistry('', docker_registry_credentials) {
+                            dockerImage.push "${image_version}"
+                        }
+
+                    }
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Sending deployment request to Kubernetes...'
             }
         }
 
