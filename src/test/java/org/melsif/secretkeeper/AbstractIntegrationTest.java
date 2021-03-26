@@ -1,5 +1,7 @@
 package org.melsif.secretkeeper;
 
+import io.restassured.RestAssured;
+import org.junit.BeforeClass;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -14,9 +16,11 @@ import java.util.stream.Stream;
 @ContextConfiguration(initializers = AbstractIntegrationTest.Initializer.class)
 public abstract class AbstractIntegrationTest {
 
+    public static final String POSTGRES_IMAGE_NAME = "postgres:9.6.12";
+
     static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-        static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>();
+        static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(POSTGRES_IMAGE_NAME);
 
         private static void startContainers() {
             Startables.deepStart(Stream.of(postgres)).join();
@@ -37,5 +41,11 @@ public abstract class AbstractIntegrationTest {
             MapPropertySource testcontainers = new MapPropertySource("testcontainers", createConnectionConfiguration());
             environment.getPropertySources().addFirst(testcontainers);
         }
+    }
+
+    @BeforeClass
+    public static void setup() {
+        RestAssured.port = 8080;
+        RestAssured.baseURI = "http://localhost";
     }
 }
