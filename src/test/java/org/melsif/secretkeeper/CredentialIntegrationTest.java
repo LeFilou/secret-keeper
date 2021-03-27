@@ -14,7 +14,17 @@ import static org.hamcrest.Matchers.equalTo;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ActiveProfiles("test")
+@Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:db/remove-credentials.sql")
+@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:db/create-credentials.sql")
 class CredentialIntegrationTest extends AbstractIntegrationTest {
+
+    @Test
+    @DisplayName("The system should retrieve all the credentials")
+    public void should_retrieve_all_the_credentials() {
+        when().get("/credentials")
+            .then().statusCode(200)
+            .body("$.size()", equalTo(5));
+    }
 
     @Test
     @DisplayName("The system should persist the credentials")
@@ -26,15 +36,18 @@ class CredentialIntegrationTest extends AbstractIntegrationTest {
         given().contentType("application/json").body(secret)
             .when().post("/credentials")
             .then().statusCode(200)
-        .body("url", equalTo("www.url.com"));
+            .body("url", equalTo("www.url.com"));
     }
 
     @Test
-    @Sql("classpath:db/create-credentials.sql")
-    @DisplayName("The system should retrieve all the credentials")
-    public void retrieve_all_credentials() {
-        when().get("/credentials")
-            .then().statusCode(200)
-            .body("$.size()", equalTo(5));
+    @DisplayName("A url cannot be associated with two equal usernames")
+    public void a_url_cannot_be_associated_with_two_equal_usernames() {
+        final HashMap<String, String> secret = new HashMap<>();
+        secret.put("url", "www.url1.com");
+        secret.put("username", "username1");
+        secret.put("password", "password");
+        given().contentType("application/json").body(secret)
+            .when().post("/credentials")
+            .then().statusCode(409);
     }
 }

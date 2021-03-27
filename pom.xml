@@ -14,6 +14,7 @@
         <lombok.version>1.18.10</lombok.version>
         <rest-assured.version>4.3.3</rest-assured.version>
         <groovy.version>3.0.2</groovy.version>
+        <commons-lang3.version>3.11</commons-lang3.version>
     </properties>
 
     <parent>
@@ -55,6 +56,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
         </dependency>
 
         <dependency>

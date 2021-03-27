@@ -3,6 +3,7 @@ package org.melsif.secretkeeper.credentials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class CredentialController {
     }
 
     @PostMapping
-    Credential newCredential(@RequestBody CredentialDto credentialDto) {
+    Credential newCredential(@RequestBody @Valid CredentialDto credentialDto) {
         return credentialService.save(credentialDto.getUrl(), credentialDto.getUsername(), credentialDto.getPassword());
     }
 
