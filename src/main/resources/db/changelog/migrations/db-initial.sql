@@ -1,6 +1,6 @@
 CREATE TABLE CREDENTIALS
 (
-    id                INTEGER constraint credentials_pk primary key,
+    id                SERIAL primary key,
     url               VARCHAR(255) NOT NULL,
     username          VARCHAR(255) NOT NULL,
     creation_date     TIMESTAMP,
@@ -9,5 +9,3 @@ CREATE TABLE CREDENTIALS
     constraint credentials_uq
         unique (url, username)
 );
-
-CREATE SEQUENCE credentials_seq;
