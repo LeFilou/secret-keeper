@@ -1,7 +1,8 @@
-package org.melsif.secretkeeper;
+package org.melsif.secretkeeper.credentials;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.melsif.secretkeeper.AbstractIntegrationTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItems;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ActiveProfiles("test")
@@ -24,6 +26,17 @@ class CredentialIntegrationTest extends AbstractIntegrationTest {
         when().get("/credentials")
             .then().statusCode(200)
             .body("$.size()", equalTo(5));
+    }
+
+    @Test
+    @DisplayName("The system should retrieve all the credentials")
+    public void credential_search_should_take_into_account_search_criteria() {
+        given()
+            .queryParam("url", "url1")
+            .when().get("/credentials")
+            .then().statusCode(200)
+            .body("$.size()", equalTo(2))
+            .body("url", hasItems("www.url1.com"));
     }
 
     @Test

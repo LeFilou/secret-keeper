@@ -1,4 +1,4 @@
-package org.melsif.secretkeeper.credentials;
+package org.melsif.secretkeeper.credentials.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ class CredentialServiceTest {
     private CredentialServiceImpl credentialService;
 
     @Test
-    @DisplayName("Credential url must be valid")
-    public void credential_dates_must_be_set_on_creation_date() {
+    @DisplayName("Credential dates must be set on creation date")
+    public void credential_dates_must_be_sedt_on_creation_date() {
         final String url = "www.url.com";
         final String username = "username";
         final String password = "password";

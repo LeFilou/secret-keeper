@@ -1,0 +1,14 @@
+{
+  "java8": "true",
+  "dateLibrary": "java8",
+  "useBeanValidation": "true",
+  "useTags": "true",
+  "generateApiTests": "false",
+  "generateApiDocumentation": "true",
+  "supportingFiles": "false",
+  "serializableModel": "true",
+  "basePackage": "org.melsif.secretkeeper",
+  "modelPackage": "org.melsif.secretkeeper.credentials.model",
+  "apiPackage": "org.melsif.secretkeeper.credentials.api",
+  "configPackage": "org.melsif.secretkeeper.credentials.config"
+}
