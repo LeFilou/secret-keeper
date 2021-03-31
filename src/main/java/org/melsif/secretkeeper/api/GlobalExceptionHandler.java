@@ -1,4 +1,4 @@
-package org.melsif.secretkeeper.common;
+package org.melsif.secretkeeper.api;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;

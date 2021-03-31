@@ -1,12 +1,12 @@
-package org.melsif.secretkeeper.credentials.domain;
+package org.melsif.secretkeeper.credentials;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static org.melsif.secretkeeper.credentials.domain.CredentialSpecifications.urlIsLike;
-import static org.melsif.secretkeeper.credentials.domain.CredentialSpecifications.usernameIsLike;
+import static org.melsif.secretkeeper.credentials.CredentialSpecifications.urlIsLike;
+import static org.melsif.secretkeeper.credentials.CredentialSpecifications.usernameIsLike;
 
 @Service
 @RequiredArgsConstructor

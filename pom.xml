@@ -178,8 +178,6 @@
                             <configurationFile>${project.basedir}/src/main/resources/openapi-generator-config.json</configurationFile>
                             <ignoreFileOverride>${project.basedir}/src/main/resources/.openapi-generator-ignore</ignoreFileOverride>
                             <generatorName>spring</generatorName>
-                            <apiPackage>org.melsif.secretkeeper.api</apiPackage>
-                            <modelPackage>org.melsif.secretkeeper.model</modelPackage>
                             <supportingFilesToGenerate>
                                 ApiUtil.java
                             </supportingFilesToGenerate>

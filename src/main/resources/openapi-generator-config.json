@@ -7,8 +7,7 @@
   "generateApiDocumentation": "true",
   "supportingFiles": "false",
   "serializableModel": "true",
-  "basePackage": "org.melsif.secretkeeper",
-  "modelPackage": "org.melsif.secretkeeper.credentials.model",
-  "apiPackage": "org.melsif.secretkeeper.credentials.api",
-  "configPackage": "org.melsif.secretkeeper.credentials.config"
+  "basePackage": "org.melsif.secretkeeper.api",
+  "modelPackage": "org.melsif.secretkeeper.api",
+  "apiPackage": "org.melsif.secretkeeper.credentials.api"
 }

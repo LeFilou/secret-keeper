@@ -1,4 +1,4 @@
-package org.melsif.secretkeeper.common;
+package org.melsif.secretkeeper.api;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;

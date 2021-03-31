@@ -1,8 +1,7 @@
-package org.melsif.secretkeeper.credentials;
+package org.melsif.secretkeeper;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.melsif.secretkeeper.AbstractIntegrationTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;

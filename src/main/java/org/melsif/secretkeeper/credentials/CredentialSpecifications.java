@@ -1,9 +1,9 @@
-package org.melsif.secretkeeper.credentials.domain;
+package org.melsif.secretkeeper.credentials;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
-public class CredentialSpecifications {
+class CredentialSpecifications {
 
     public static Specification<Credential> urlIsLike(String url) {
         return (root, query, cb) ->  {

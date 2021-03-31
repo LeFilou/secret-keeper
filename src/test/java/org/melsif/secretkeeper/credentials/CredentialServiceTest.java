@@ -1,4 +1,4 @@
-package org.melsif.secretkeeper.credentials.domain;
+package org.melsif.secretkeeper.credentials;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package org.melsif.secretkeeper.credentials.domain;
+package org.melsif.secretkeeper.credentials;
 
 import lombok.AccessLevel;
 import lombok.Getter;
