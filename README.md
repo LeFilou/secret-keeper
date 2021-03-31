@@ -1,1 +1,2 @@
-# **Secret Keeper**
+# Secret Keeper
+> an application that manages secrets

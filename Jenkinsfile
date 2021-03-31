@@ -16,7 +16,7 @@ pipeline {
     }
 
     triggers {
-        // Configure Gitlab trigger
+        // Configure triggers
         gitlab(
                 triggerOnPush: false,
                 triggerOnMergeRequest: true,
