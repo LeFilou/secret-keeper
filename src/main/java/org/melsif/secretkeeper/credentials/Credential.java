@@ -20,7 +20,7 @@ public class Credential implements Serializable {
     @Id
     @SequenceGenerator(name = "credentials_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "credentials_id_seq")
-    private Long id;
+    private Long id ;
     private String url;
     private String username;
     private String password;

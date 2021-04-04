@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @SpringBootApplication
-public class SecretKeeperApplication {
+public class SecretKeeper {
 
     public static void main(String[] args) {
-        SpringApplication.run(SecretKeeperApplication.class, args);
+        SpringApplication.run(SecretKeeper.class, args);
     }
 
     @Bean

@@ -19,7 +19,7 @@ class CredentialServiceTest {
     private CredentialRepository credentialRepository;
 
     @InjectMocks
-    private CredentialServiceImpl credentialService;
+    private RepositoryCredentialService credentialService;
 
     @Test
     @DisplayName("Credential dates must be set on creation date")

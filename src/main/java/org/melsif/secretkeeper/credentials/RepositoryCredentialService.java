@@ -10,7 +10,7 @@ import static org.melsif.secretkeeper.credentials.CredentialSpecifications.usern
 
 @Service
 @RequiredArgsConstructor
-class CredentialServiceImpl implements CredentialService {
+class RepositoryCredentialService implements CredentialService {
 
     private final CredentialRepository credentials;
 

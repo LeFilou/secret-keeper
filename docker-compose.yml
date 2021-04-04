@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  secret-keeper:
+    container_name: secret-keeper
+    build: .
+    ports:
+    - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_URL=jdbc:postgresql://db:5432/hermes
+  db:
+    image: postgres:latest
+    container_name: postgres-db
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=hermes
+    ports:
+    - "5432:5432"
+    volumes:
+    - postgres-data:/var/lib/postgresql/data
+volumes:
+  postgres-data:

@@ -3,7 +3,7 @@
   "dateLibrary": "java8",
   "useBeanValidation": "true",
   "useTags": "true",
-  "generateApiTests": "false",
+  "generateApiTests": "true",
   "generateApiDocumentation": "true",
   "supportingFiles": "false",
   "serializableModel": "true",
