@@ -29,7 +29,7 @@ class CredentialServiceTest {
         final String password = "password";
         when(credentialRepository.save(any(Credential.class)))
             .then(returnsFirstArg());
-        final Credential save = credentialService.save(url, username, password);
+        final Credential save = credentialService.saveANewSecret(url, username, password);
         assertThat(save.getCreationDate()).isToday();
         assertThat(save.getModificationDate()).isToday();
     }

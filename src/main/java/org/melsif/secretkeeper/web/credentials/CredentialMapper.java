@@ -1,4 +1,4 @@
-package org.melsif.secretkeeper.api;
+package org.melsif.secretkeeper.web.credentials;
 
 import org.mapstruct.Mapper;
 import org.melsif.secretkeeper.credentials.Credential;

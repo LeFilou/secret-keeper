@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface CredentialService {
 
-    Credential save(String url, String username, String password);
+    Credential saveANewSecret(String url, String username, String password);
 
-    List<Credential> loadCredentials(String url, String username);
+    List<Credential> fetchCredentials(String url, String username);
 }
