@@ -9,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -34,14 +33,5 @@ class CredentialServiceTest {
         final Credential save = credentialService.saveANewSecret(url, username, password);
         assertThat(save.getCreationDate()).isToday();
         assertThat(save.getModificationDate()).isToday();
-    }
-
-    @Test
-    public void credential_url_must_be_valid() {
-        final String url = "htt://url.com";
-        final String username = "username";
-        final String password = "password";
-        assertThatIllegalArgumentException()
-            .isThrownBy(() -> credentialService.saveANewSecret(url, username, password));
     }
 }

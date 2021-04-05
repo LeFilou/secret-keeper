@@ -24,8 +24,9 @@ class CredentialController implements CredentialsApi {
     }
 
     @Override
-    public ResponseEntity<List<CredentialDetails>> getCredentials(@Valid String url, @Valid String username) {
-        var credentials = credentialService.fetchCredentials(new CredentialSearchCriteria(url, username))
+    public ResponseEntity<List<CredentialDetails>> getCredentials(@Valid String urlPattern, @Valid String usernamePattern) {
+        var credentials = credentialService
+            .fetchCredentials(new CredentialSearchCriteria(urlPattern, usernamePattern))
             .stream()
             .map(credentialMapper::toCredential)
             .collect(Collectors.toUnmodifiableList());

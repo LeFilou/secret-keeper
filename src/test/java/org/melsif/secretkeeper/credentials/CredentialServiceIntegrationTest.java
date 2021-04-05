@@ -36,11 +36,26 @@ class CredentialServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     public void fetches_credentials_following_a_url_pattern() {
-        final List<Credential> credentials = credentialService.fetchCredentials(new CredentialSearchCriteria("url1", null));
+        final String urlPattern = "url1";
+        final List<Credential> credentials = credentialService.fetchCredentials(new CredentialSearchCriteria(urlPattern, null));
         assertThat(credentials).isNotEmpty();
         assertThat(credentials).hasSize(2);
         final List<String> urls = credentials.stream().map(Credential::getUrl).collect(Collectors.toUnmodifiableList());
-        assertThat(urls).allSatisfy(url -> assertThat(url).contains("url1"));
+        assertThat(urls).allSatisfy(url -> assertThat(url).contains(urlPattern));
+    }
+
+    @Test
+    public void fetches_credentials_following_a_url_and_a_username_pattern() {
+        final String urlPattern = "url1";
+        final String usernamePattern = "name1";
+
+        final List<Credential> credentials = credentialService.fetchCredentials(new CredentialSearchCriteria(urlPattern, usernamePattern));
+
+        assertThat(credentials).isNotEmpty();
+        assertThat(credentials).hasSize(1);
+        final Credential credential = credentials.get(0);
+        assertThat(credential.getUrl()).contains(urlPattern);
+        assertThat(credential.getUsername()).contains(usernamePattern);
     }
 
     @Test

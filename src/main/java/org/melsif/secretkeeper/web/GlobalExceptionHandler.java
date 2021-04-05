@@ -34,8 +34,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Value("${secretkeeper.trace:false}")
     private boolean printStackTrace;
 
+    private final MessageSource messageSource;
+
     @Autowired
-    private MessageSource messageSource;
+    public GlobalExceptionHandler(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     @Override
     @ResponseStatus(BAD_REQUEST)
@@ -50,7 +54,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             errorResponse.addValidationError(fieldError.getField(),
                 fieldError.getDefaultMessage());
         }
-        return ResponseEntity.unprocessableEntity().body(errorResponse);
+        return ResponseEntity.badRequest().body(errorResponse);
     }
 
     @ExceptionHandler(Exception.class)

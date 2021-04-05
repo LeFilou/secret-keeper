@@ -38,7 +38,7 @@ public class Credential implements Serializable {
         this.modificationDate = LocalDate.now();
     }
 
-    static Credential newCredential(String url, String username, String password) {
+    public static Credential newCredential(String url, String username, String password) {
         return new Credential(url, username, password);
     }
 
