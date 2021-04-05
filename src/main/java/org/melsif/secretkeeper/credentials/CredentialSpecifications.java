@@ -5,21 +5,21 @@ import org.springframework.data.jpa.domain.Specification;
 
 class CredentialSpecifications {
 
-    public static Specification<Credential> urlIsLike(String url) {
+    public static Specification<Credential> urlContains(String url) {
         return (root, query, cb) ->  {
             if (StringUtils.isBlank(url)) {
                 return cb.isTrue(cb.literal(true));
             }
-            return cb.like(cb.lower(root.get("url")), getLikePattern(url));
+            return cb.like(cb.lower(root.get(Credential_.credentialIdentifiers).get("url")), getLikePattern(url));
         };
     }
 
-    public static Specification<Credential> usernameIsLike(String username) {
+    public static Specification<Credential> usernameContains(String username) {
         return (root, query, cb) ->  {
             if (StringUtils.isBlank(username)) {
                 return cb.isTrue(cb.literal(true));
             }
-            return cb.like(cb.lower(root.get("username")), getLikePattern(username));
+            return cb.like(cb.lower(root.get(Credential_.credentialIdentifiers).get("username")), getLikePattern(username));
         };
     }
 

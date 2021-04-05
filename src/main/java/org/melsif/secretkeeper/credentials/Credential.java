@@ -4,6 +4,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.apache.commons.validator.routines.UrlValidator;
+import org.apache.logging.log4j.util.Strings;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,15 +23,16 @@ public class Credential implements Serializable {
     @SequenceGenerator(name = "credentials_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "credentials_id_seq")
     private Long id ;
-    private String url;
-    private String username;
+
+    @Embedded
+    private CredentialIdentifiers credentialIdentifiers;
+
     private String password;
     private LocalDate creationDate;
     private LocalDate modificationDate;
 
     private Credential(String url, String username, String password) {
-        this.url = Objects.requireNonNull(url);
-        this.username = Objects.requireNonNull(username);
+        credentialIdentifiers = new CredentialIdentifiers(url, username);
         this.password = Objects.requireNonNull(password);
         this.creationDate = LocalDate.now();
         this.modificationDate = LocalDate.now();
@@ -37,5 +40,39 @@ public class Credential implements Serializable {
 
     static Credential newCredential(String url, String username, String password) {
         return new Credential(url, username, password);
+    }
+
+    public String getUrl() {
+        return credentialIdentifiers.getUrl();
+    }
+
+    public String getUsername() {
+        return credentialIdentifiers.getUsername();
+    }
+
+    public void changePassword(String newPassword) {
+        modificationDate = LocalDate.now();
+        password = newPassword;
+    }
+
+    @Embeddable
+    @NoArgsConstructor
+    @Getter
+    static class CredentialIdentifiers {
+        public static final String URL_OR_USERNAME_EMPTY = "credentialIdentifiers.empty.fields.error";
+        public static final String URL_INVALID = "credentialIdentifiers.invalid.url.error";
+        private String url;
+        private String username;
+
+        CredentialIdentifiers(String url, String username) {
+            if (Strings.isBlank(url) || Strings.isBlank(username)) {
+                throw new IllegalArgumentException(URL_OR_USERNAME_EMPTY);
+            }
+            if (!new UrlValidator().isValid(url)) {
+                throw new IllegalArgumentException(URL_INVALID);
+            }
+            this.url = url;
+            this.username = username;
+        }
     }
 }

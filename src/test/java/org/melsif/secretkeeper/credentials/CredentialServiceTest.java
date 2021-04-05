@@ -1,6 +1,7 @@
 package org.melsif.secretkeeper.credentials;
 
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -8,11 +9,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class CredentialServiceTest {
 
     @Mock
@@ -22,9 +25,8 @@ class CredentialServiceTest {
     private RepositoryCredentialService credentialService;
 
     @Test
-    @DisplayName("Credential dates must be set on creation date")
-    public void credential_dates_must_be_sedt_on_creation_date() {
-        final String url = "www.url.com";
+    public void credential_dates_must_be_set_on_creation_date() {
+        final String url = "http://url.com";
         final String username = "username";
         final String password = "password";
         when(credentialRepository.save(any(Credential.class)))
@@ -32,5 +34,14 @@ class CredentialServiceTest {
         final Credential save = credentialService.saveANewSecret(url, username, password);
         assertThat(save.getCreationDate()).isToday();
         assertThat(save.getModificationDate()).isToday();
+    }
+
+    @Test
+    public void credential_url_must_be_valid() {
+        final String url = "htt://url.com";
+        final String username = "username";
+        final String password = "password";
+        assertThatIllegalArgumentException()
+            .isThrownBy(() -> credentialService.saveANewSecret(url, username, password));
     }
 }

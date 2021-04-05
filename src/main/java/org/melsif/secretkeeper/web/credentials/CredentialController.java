@@ -1,6 +1,7 @@
 package org.melsif.secretkeeper.web.credentials;
 
 import lombok.RequiredArgsConstructor;
+import org.melsif.secretkeeper.credentials.CredentialSearchCriteria;
 import org.melsif.secretkeeper.credentials.CredentialService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,7 @@ class CredentialController implements CredentialsApi {
 
     @Override
     public ResponseEntity<List<CredentialDetails>> getCredentials(@Valid String url, @Valid String username) {
-        var credentials = credentialService.fetchCredentials(url, username)
+        var credentials = credentialService.fetchCredentials(new CredentialSearchCriteria(url, username))
             .stream()
             .map(credentialMapper::toCredential)
             .collect(Collectors.toUnmodifiableList());
