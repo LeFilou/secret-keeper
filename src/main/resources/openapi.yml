@@ -14,8 +14,7 @@ paths:
     post:
       tags:
         - credentials
-      summary: Add a new credential
-      description: ''
+      summary: Creates a new credential
       operationId: newCredential
       requestBody:
         description: Credential that needs to be stored
@@ -41,7 +40,7 @@ paths:
     get:
       tags:
         - credentials
-      summary: ''
+      summary: Get credentials
       operationId: getCredentials
       responses:
         '200':
@@ -57,7 +56,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      description: ''
+      description: Get all the credentials that matches to research criteria.
       parameters:
         - schema:
             type: string
@@ -67,6 +66,39 @@ paths:
             type: string
           in: query
           name: username
+    parameters: []
+  '/credentials/{credential-id}':
+    parameters:
+      - schema:
+          type: integer
+          format: int64
+        name: credential-id
+        in: path
+        required: true
+    patch:
+      tags:
+        - credentials
+      summary: Update a credential
+      operationId: updateCredential
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredentialDetails'
+        '404':
+          description: Not Found
+      description: Updates the credential
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCredentialData'
+            examples:
+              new-password:
+                value:
+                  password: changed-password
 components:
   schemas:
     CredentialDetails:
@@ -93,3 +125,11 @@ components:
         - url
         - username
         - password
+    NewCredentialData:
+      title: NewCredentialData
+      type: object
+      x-examples: {}
+      properties:
+        newPassword:
+          type: string
+      description: The new credential data

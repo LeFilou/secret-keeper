@@ -19,6 +19,8 @@ import java.util.Objects;
 @Getter
 public class Credential implements Serializable {
 
+    public static final String CREDENTIAL_NOT_FOUND = "credential.not.found";
+
     @Id
     @SequenceGenerator(name = "credentials_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "credentials_id_seq")
@@ -50,7 +52,7 @@ public class Credential implements Serializable {
         return credentialIdentifiers.getUsername();
     }
 
-    public void changePassword(String newPassword) {
+    void changePassword(String newPassword) {
         modificationDate = LocalDate.now();
         password = newPassword;
     }

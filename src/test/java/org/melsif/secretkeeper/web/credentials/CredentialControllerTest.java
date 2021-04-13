@@ -108,4 +108,25 @@ class CredentialControllerTest extends AbstractControllerTest {
                 .body("$.size()", equalTo(0));
         }
     }
+
+    @Nested
+    @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+    class when_updating_credentials {
+
+        @Test
+        public void returns_the_updated_credential() {
+            final long credentialId = 1L;
+            final String url = "http://url.com";
+            final String username = "slimoux";
+            final String newPassword = "new-password";
+            Mockito.when(credentialService.changePassword(credentialId, newPassword))
+                .thenReturn(Credential.newCredential(url, username, newPassword));
+
+            final NewCredentialData newCredentialData = new NewCredentialData().newPassword(newPassword);
+            given().contentType("application/json")
+                .body(newCredentialData)
+                .when().patch("/credentials/1")
+                .then().statusCode(200);
+        }
+    }
 }

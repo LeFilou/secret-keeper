@@ -14,4 +14,13 @@ class CredentialTest {
         assertThatIllegalArgumentException()
             .isThrownBy(() -> Credential.newCredential(url, username, password));
     }
+
+    @Test
+    public void empty_username_or_url_are_not_accepted() {
+        final String url = "http://url.com";
+        final String username = "";
+        final String password = "password";
+        assertThatIllegalArgumentException()
+            .isThrownBy(() -> Credential.newCredential(url, username, password));
+    }
 }

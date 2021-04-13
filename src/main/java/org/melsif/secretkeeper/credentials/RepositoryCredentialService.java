@@ -1,12 +1,11 @@
 package org.melsif.secretkeeper.credentials;
 
 import lombok.RequiredArgsConstructor;
-import org.melsif.secretkeeper.credentials.Credential.CredentialIdentifiers;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+import static org.melsif.secretkeeper.credentials.Credential.CREDENTIAL_NOT_FOUND;
 import static org.melsif.secretkeeper.credentials.CredentialSpecifications.urlContains;
 import static org.melsif.secretkeeper.credentials.CredentialSpecifications.usernameContains;
 
@@ -26,14 +25,14 @@ class RepositoryCredentialService implements CredentialService {
     public List<Credential> fetchCredentials(CredentialSearchCriteria credentialSearchCriteria) {
         final String urlPattern = credentialSearchCriteria.getUrlPattern();
         final String usernamePattern = credentialSearchCriteria.getUsernamePattern();
-        return credentials
-            .findAll(urlContains(urlPattern).and(usernameContains(usernamePattern)));
+        return credentials.findAll(urlContains(urlPattern).and(usernameContains(usernamePattern)));
     }
 
     @Override
-    public Credential changePassword(String url, String username, String newPassword) {
-        final Credential credential = credentials.findByCredentialIdentifiers(new CredentialIdentifiers(url, username))
-            .orElseThrow(() -> new EntityNotFoundException("Credential not found"));
+    public Credential changePassword(long credentialId, String newPassword) {
+        final Credential credential = credentials
+            .findById(credentialId)
+            .orElseThrow(() -> new CredentialNotFound(CREDENTIAL_NOT_FOUND));
         credential.changePassword(newPassword);
         return credential;
     }

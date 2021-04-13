@@ -74,10 +74,9 @@ class CredentialServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     public void changes_credential_password() {
-        final String url = "http://url1.com";
-        final String username = "username1";
+        final long credentialId = 1L;
         final String newPassword = "new-password";
-        final Credential credential = credentialService.changePassword(url, username, newPassword);
+        final Credential credential = credentialService.changePassword(credentialId, newPassword);
         assertThat(credential.getPassword()).isEqualTo(newPassword);
         assertThat(credential.getModificationDate()).isEqualTo(LocalDate.now());
     }
