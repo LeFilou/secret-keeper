@@ -28,38 +28,35 @@ class CredentialServiceIntegrationTest extends AbstractIntegrationTest {
     CredentialService credentialService;
 
     @Test
-    public void retrieves_all_credentials() {
+    void retrieves_all_credentials() {
         final List<Credential> credentials = credentialService.fetchCredentials(CredentialSearchCriteria.NONE);
-        assertThat(credentials).isNotEmpty();
-        assertThat(credentials).hasSize(5);
+        assertThat(credentials).isNotEmpty().hasSize(5);
     }
 
     @Test
-    public void fetches_credentials_following_a_url_pattern() {
+    void fetches_credentials_following_a_url_pattern() {
         final String urlPattern = "url1";
         final List<Credential> credentials = credentialService.fetchCredentials(new CredentialSearchCriteria(urlPattern, null));
-        assertThat(credentials).isNotEmpty();
-        assertThat(credentials).hasSize(2);
+        assertThat(credentials).isNotEmpty().hasSize(2);
         final List<String> urls = credentials.stream().map(Credential::getUrl).collect(Collectors.toUnmodifiableList());
-        assertThat(urls).allSatisfy(url -> assertThat(url).contains(urlPattern));
+        assertThat(urls).isNotEmpty().allSatisfy(url -> assertThat(url).contains(urlPattern));
     }
 
     @Test
-    public void fetches_credentials_following_a_url_and_a_username_pattern() {
+    void fetches_credentials_following_a_url_and_a_username_pattern() {
         final String urlPattern = "url1";
         final String usernamePattern = "name1";
 
         final List<Credential> credentials = credentialService.fetchCredentials(new CredentialSearchCriteria(urlPattern, usernamePattern));
 
-        assertThat(credentials).isNotEmpty();
-        assertThat(credentials).hasSize(1);
+        assertThat(credentials).isNotEmpty().hasSize(1);
         final Credential credential = credentials.get(0);
         assertThat(credential.getUrl()).contains(urlPattern);
         assertThat(credential.getUsername()).contains(usernamePattern);
     }
 
     @Test
-    public void creates_a_new_credential() {
+    void creates_a_new_credential() {
         final Credential credential = credentialService.saveANewSecret("http://url.com", "slimoux", "password");
         assertThat(credential).isNotNull();
         assertThat(credential.getUrl()).isEqualTo("http://url.com");
@@ -67,13 +64,13 @@ class CredentialServiceIntegrationTest extends AbstractIntegrationTest {
     }
 
     @Test
-    public void creating_credentials_with_the_same_url_and_username_is_forbidden() {
+    void creating_credentials_with_the_same_url_and_username_is_forbidden() {
         assertThatExceptionOfType(DataIntegrityViolationException.class)
             .isThrownBy(() -> credentialService.saveANewSecret("http://url1.com", "username1", "password"));
     }
 
     @Test
-    public void changes_credential_password() {
+    void changes_credential_password() {
         final long credentialId = 1L;
         final String newPassword = "new-password";
         final Credential credential = credentialService.changePassword(credentialId, newPassword);

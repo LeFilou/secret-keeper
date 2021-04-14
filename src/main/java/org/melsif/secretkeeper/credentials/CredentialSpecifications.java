@@ -1,8 +1,12 @@
 package org.melsif.secretkeeper.credentials;
 
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
+import static lombok.AccessLevel.NONE;
+
+@NoArgsConstructor(access = NONE)
 class CredentialSpecifications {
 
     public static Specification<Credential> urlContains(String url) {

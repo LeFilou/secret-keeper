@@ -39,7 +39,7 @@ class CredentialControllerTest extends AbstractControllerTest {
     class when_creating_a_new_credential {
 
         @Test
-        public void returns_the_created_credential() {
+        void returns_the_created_credential() {
             final String url = "http://url.com";
             final String username = "slimoux";
             final String password = "password";
@@ -59,7 +59,7 @@ class CredentialControllerTest extends AbstractControllerTest {
         }
 
         @Test
-        public void returns_a_bad_request_if_arguments_are_invalid() {
+        void returns_a_bad_request_if_arguments_are_invalid() {
             final HashMap<String, String> secret = new HashMap<>();
             secret.put("url", "http://url.com");
             secret.put("password", "password");
@@ -71,7 +71,7 @@ class CredentialControllerTest extends AbstractControllerTest {
         }
 
         @Test
-        public void returns_a_conflict_error_if_the_credential_already_exists() {
+        void returns_a_conflict_error_if_the_credential_already_exists() {
             final HashMap<String, String> secret = new HashMap<>();
             final String url = "http://url1.com";
             final String username = "username1";
@@ -96,7 +96,7 @@ class CredentialControllerTest extends AbstractControllerTest {
     class when_fetching_for_credentials {
 
         @Test
-        public void returns_empty_collection_if_no_credential_matches_the_criteria() {
+        void returns_empty_collection_if_no_credential_matches_the_criteria() {
             final String url = "http://url.com";
             final String username = "slimoux";
 
@@ -114,7 +114,7 @@ class CredentialControllerTest extends AbstractControllerTest {
     class when_updating_credentials {
 
         @Test
-        public void returns_the_updated_credential() {
+        void returns_the_updated_credential() {
             final long credentialId = 1L;
             final String url = "http://url.com";
             final String username = "slimoux";

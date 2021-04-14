@@ -24,7 +24,7 @@ class CredentialServiceTest {
     private RepositoryCredentialService credentialService;
 
     @Test
-    public void credential_dates_must_be_set_on_creation_date() {
+    void credential_dates_must_be_set_on_creation_date() {
         final String url = "http://url.com";
         final String username = "username";
         final String password = "password";

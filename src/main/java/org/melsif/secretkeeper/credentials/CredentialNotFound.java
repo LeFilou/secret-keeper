@@ -1,7 +1,7 @@
 package org.melsif.secretkeeper.credentials;
 
 
-import javax.persistence.EntityNotFoundException;
+import org.melsif.secretkeeper.commons.EntityNotFoundException;
 
 public class CredentialNotFound extends EntityNotFoundException {
 

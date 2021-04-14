@@ -60,7 +60,7 @@ public class Credential implements Serializable {
     @Embeddable
     @NoArgsConstructor
     @Getter
-    static class CredentialIdentifiers {
+    static class CredentialIdentifiers implements Serializable {
         public static final String URL_OR_USERNAME_EMPTY = "credentialIdentifiers.empty.fields.error";
         public static final String URL_INVALID = "credentialIdentifiers.invalid.url.error";
         private String url;
