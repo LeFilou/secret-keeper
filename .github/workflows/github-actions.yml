@@ -33,7 +33,7 @@ jobs:
       - name: SonarCloud Scan
         run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   artifact:
     name: Publish - GitHub Packages
     runs-on: ubuntu-20.04
@@ -49,7 +49,7 @@ jobs:
       - name: Publish artifact on GitHub Packages
         run: mvn -B clean deploy -DskipTests
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   docker:
     name: Publish - Docker Hub
     runs-on: ubuntu-20.04

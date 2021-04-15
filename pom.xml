@@ -235,4 +235,12 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>NoticeBoard Simple CRUD application</name>
+            <url>https://maven.pkg.github.com/LeFilou/secret-keeper</url>
+        </repository>
+    </distributionManagement>
+
 </project>
