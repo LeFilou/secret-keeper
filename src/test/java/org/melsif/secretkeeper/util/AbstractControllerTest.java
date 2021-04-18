@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
-import org.melsif.secretkeeper.web.GlobalExceptionHandler;
+import org.melsif.secretkeeper.commons.GlobalExceptionHandler;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.StaticMessageSource;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;

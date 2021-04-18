@@ -1,6 +1,7 @@
-package org.melsif.secretkeeper.credentials;
+package org.melsif.secretkeeper.credentials.domain;
 
 import org.junit.jupiter.api.Test;
+import org.melsif.secretkeeper.credentials.domain.Credential;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

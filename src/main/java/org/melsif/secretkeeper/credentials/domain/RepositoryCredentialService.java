@@ -1,13 +1,13 @@
-package org.melsif.secretkeeper.credentials;
+package org.melsif.secretkeeper.credentials.domain;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static org.melsif.secretkeeper.credentials.Credential.CREDENTIAL_NOT_FOUND;
-import static org.melsif.secretkeeper.credentials.CredentialSpecifications.urlContains;
-import static org.melsif.secretkeeper.credentials.CredentialSpecifications.usernameContains;
+import static org.melsif.secretkeeper.credentials.domain.Credential.CREDENTIAL_NOT_FOUND;
+import static org.melsif.secretkeeper.credentials.domain.CredentialSpecifications.urlContains;
+import static org.melsif.secretkeeper.credentials.domain.CredentialSpecifications.usernameContains;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +32,7 @@ class RepositoryCredentialService implements CredentialService {
     public Credential changePassword(long credentialId, String newPassword) {
         final Credential credential = credentials
             .findById(credentialId)
-            .orElseThrow(() -> new CredentialNotFound(CREDENTIAL_NOT_FOUND));
+            .orElseThrow(() -> new CredentialNotFoundException(CREDENTIAL_NOT_FOUND));
         credential.changePassword(newPassword);
         return credential;
     }

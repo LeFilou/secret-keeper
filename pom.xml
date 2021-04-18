@@ -24,13 +24,6 @@
         <hibernate-jpamodelgen.version>5.4.10.Final</hibernate-jpamodelgen.version>
 
         <jacoco.version>0.8.3</jacoco.version>
-        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-        <sonar.language>java</sonar.language>
-        <code.coverage.exclusions>
-            **/org/melsif/secretkeeper/SecretKeeper.java
-        </code.coverage.exclusions>
     </properties>
 
     <parent>
@@ -212,7 +205,9 @@
                     <output>file</output>
                     <append>true</append>
                     <excludes>
-                        <exclude>*MethodAccess</exclude>
+                        <exclude>org/melsif/secretkeeper/commons/*</exclude>
+                        <exclude>org/melsif/secretkeeper/SecretKeeper.class</exclude>
+                        <exclude>**/*Exception.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -240,12 +235,18 @@
             <id>sonar</id>
 
             <properties>
-                <sonar.sources>.</sonar.sources>
-                <sonar.inclusions>src/main/java/**,src/main/resources/**</sonar.inclusions>
-                <sonar.exclusions>${code.coverage.exclusions}</sonar.exclusions>
                 <sonar.projectKey>LeFilou_secret-keeper</sonar.projectKey>
                 <sonar.organization>lefilou</sonar.organization>
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+                <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+                <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+                <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+                <sonar.language>java</sonar.language>
+                <sonar.exclusions>
+                    org/melsif/secretkeeper/commons/*,
+                    org/melsif/secretkeeper/SecretKeeper.class,
+                    **/*Exception.*
+                </sonar.exclusions>
             </properties>
 
             <activation>

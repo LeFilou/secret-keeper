@@ -1,4 +1,4 @@
-package org.melsif.secretkeeper.credentials;
+package org.melsif.secretkeeper.credentials.domain;
 
 import java.util.List;
 

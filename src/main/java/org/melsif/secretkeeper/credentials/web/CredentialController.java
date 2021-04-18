@@ -1,9 +1,9 @@
-package org.melsif.secretkeeper.web.credentials;
+package org.melsif.secretkeeper.credentials.web;
 
 import lombok.RequiredArgsConstructor;
-import org.melsif.secretkeeper.credentials.Credential;
-import org.melsif.secretkeeper.credentials.CredentialSearchCriteria;
-import org.melsif.secretkeeper.credentials.CredentialService;
+import org.melsif.secretkeeper.credentials.domain.Credential;
+import org.melsif.secretkeeper.credentials.domain.CredentialSearchCriteria;
+import org.melsif.secretkeeper.credentials.domain.CredentialService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 

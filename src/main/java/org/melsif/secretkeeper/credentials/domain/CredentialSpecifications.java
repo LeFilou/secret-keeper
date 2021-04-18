@@ -1,4 +1,4 @@
-package org.melsif.secretkeeper.credentials;
+package org.melsif.secretkeeper.credentials.domain;
 
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;

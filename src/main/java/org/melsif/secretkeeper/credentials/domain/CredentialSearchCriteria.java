@@ -1,4 +1,4 @@
-package org.melsif.secretkeeper.credentials;
+package org.melsif.secretkeeper.credentials.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
