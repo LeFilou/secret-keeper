@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.melsif.secretkeeper.credentials.domain.Credential.CREDENTIAL_NOT_FOUND;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ActiveProfiles("test")
@@ -76,5 +77,23 @@ class CredentialServiceIntegrationTest extends AbstractIntegrationTest {
         final Credential credential = credentialService.changePassword(credentialId, newPassword);
         assertThat(credential.getPassword()).isEqualTo(newPassword);
         assertThat(credential.getModificationDate()).isEqualTo(LocalDate.now());
+    }
+
+    @Test
+    void find_credential_by_its_id() {
+        final long credentialId = 1L;
+        final Credential credential = credentialService.findCredential(credentialId);
+        assertThat(credential).isNotNull();
+        assertThat(credential.getUsername()).isEqualTo("username1");
+        assertThat(credential.getUrl()).isEqualTo("http://url1.com");
+    }
+
+    @Test
+    void delete_credential() {
+        final long credentialId = 1L;
+        credentialService.deleteCredential(credentialId);
+        assertThatExceptionOfType(CredentialNotFoundException.class)
+            .isThrownBy(() -> credentialService.findCredential(1L))
+            .withMessage(CREDENTIAL_NOT_FOUND);
     }
 }

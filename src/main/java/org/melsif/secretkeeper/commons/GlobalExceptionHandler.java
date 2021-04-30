@@ -70,9 +70,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return buildErrorResponse(exception, exception.getMessage(), CONFLICT, request);
     }
 
+    @ExceptionHandler(EntityNotFoundException.class)
+    @ResponseStatus(NOT_FOUND)
+    protected ResponseEntity<ApiError> handleEntityNotFoundException(EntityNotFoundException exception, WebRequest request) {
+        return buildErrorResponse(exception, exception.getMessage(), NOT_FOUND, request);
+    }
+
 
     private ResponseEntity<ApiError> buildErrorResponse(Exception exception, String message, HttpStatus httpStatus, WebRequest request) {
-        ApiError errorResponse = new ApiError(httpStatus, message);
+        var errorResponse = new ApiError(httpStatus, message);
         if (printStackTrace && isTraceOn(request)){
             errorResponse.setStackTrace(ExceptionUtils.getStackTrace(exception));
         }

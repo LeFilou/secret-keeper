@@ -18,7 +18,7 @@ import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.when;
 import static org.hamcrest.Matchers.equalTo;
 import static org.melsif.secretkeeper.commons.GlobalExceptionHandler.VALIDATION_ERROR;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.CONFLICT;
 
@@ -127,6 +127,21 @@ class CredentialControllerTest extends AbstractControllerTest {
                 .body(newCredentialData)
                 .when().patch("/credentials/1")
                 .then().statusCode(200);
+        }
+    }
+
+    @Nested
+    @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+    class when_deleting_credentials {
+
+        @Test
+        void deletes_credential_and_returns_no_content() {
+            final long credentialId = 1L;
+            given().contentType("application/json")
+                .when().delete("/credentials/" + credentialId)
+                .then().statusCode(204);
+            verify(credentialService, times(1))
+                .deleteCredential(credentialId);
         }
     }
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static org.melsif.secretkeeper.credentials.domain.Credential.CREDENTIAL_NOT_FOUND;
 import static org.melsif.secretkeeper.credentials.domain.CredentialSpecifications.urlContains;
 import static org.melsif.secretkeeper.credentials.domain.CredentialSpecifications.usernameContains;
 
@@ -17,7 +16,7 @@ class RepositoryCredentialService implements CredentialService {
 
     @Override
     public Credential saveANewSecret(String url, String username, String password) {
-        final Credential credential = Credential.newCredential(url, username, password);
+        var credential = Credential.newCredential(url, username, password);
         return credentials.save(credential);
     }
 
@@ -30,10 +29,20 @@ class RepositoryCredentialService implements CredentialService {
 
     @Override
     public Credential changePassword(long credentialId, String newPassword) {
-        final Credential credential = credentials
-            .findById(credentialId)
-            .orElseThrow(() -> new CredentialNotFoundException(CREDENTIAL_NOT_FOUND));
+        var credential = credentials
+            .findOne(credentialId);
         credential.changePassword(newPassword);
         return credential;
+    }
+
+    @Override
+    public Credential findCredential(long credentialId) {
+        return credentials
+            .findOne(credentialId);
+    }
+
+    @Override
+    public void deleteCredential(long credentialId) {
+        credentials.delete(credentialId);
     }
 }

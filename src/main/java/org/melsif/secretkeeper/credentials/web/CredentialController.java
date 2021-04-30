@@ -1,7 +1,6 @@
 package org.melsif.secretkeeper.credentials.web;
 
 import lombok.RequiredArgsConstructor;
-import org.melsif.secretkeeper.credentials.domain.Credential;
 import org.melsif.secretkeeper.credentials.domain.CredentialSearchCriteria;
 import org.melsif.secretkeeper.credentials.domain.CredentialService;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +35,13 @@ class CredentialController implements CredentialsApi {
 
     @Override
     public ResponseEntity<CredentialDetails> updateCredential(Long credentialId, @Valid NewCredentialData newCredentialData) {
-        final Credential updatedCredential = credentialService.changePassword(credentialId, newCredentialData.getNewPassword());
+        var updatedCredential = credentialService.changePassword(credentialId, newCredentialData.getNewPassword());
         return ResponseEntity.ok(credentialMapper.toCredentialDetails(updatedCredential));
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteCredential(Long credentialId) {
+        credentialService.deleteCredential(credentialId);
+        return ResponseEntity.noContent().build();
     }
 }

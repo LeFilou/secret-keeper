@@ -8,5 +8,9 @@ public interface CredentialService {
 
     List<Credential> fetchCredentials(CredentialSearchCriteria credentialSearchCriteria);
 
+    Credential findCredential(long credentialId);
+
     Credential changePassword(long credentialId, String newPassword);
+
+    void deleteCredential(long credentialId);
 }

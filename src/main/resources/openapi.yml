@@ -99,6 +99,14 @@ paths:
               new-password:
                 value:
                   password: changed-password
+    delete:
+      tags:
+        - credentials
+      summary: Delete a credential
+      operationId: deleteCredential
+      responses:
+        '204':
+          description: No Content
 components:
   schemas:
     CredentialDetails:
