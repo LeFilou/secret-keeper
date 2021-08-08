@@ -19,7 +19,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: beans, metrics, info, health, loggers
+        include: beans, metrics, info, health, loggers, readiness
 
 # Misc
 secretkeeper:
