@@ -1,3 +1,4 @@
+# Database config
 spring:
   datasource:
     username: ${DB_USER}
@@ -12,5 +13,14 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# Actuator config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans, metrics, info, health, loggers
+
+# Misc
 secretkeeper:
   trace: true
