@@ -11,17 +11,17 @@
     <properties>
         <java.version>11</java.version>
         <testcontainers.version>1.15.1</testcontainers.version>
-        <lombok.version>1.18.10</lombok.version>
+        <lombok.version>1.18.20</lombok.version>
         <rest-assured.version>4.3.3</rest-assured.version>
         <groovy.version>3.0.2</groovy.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
-        <swagger-annotations-version>1.5.22</swagger-annotations-version>
+        <swagger-annotations-version>1.6.2</swagger-annotations-version>
         <springfox-version>2.9.2</springfox-version>
         <jackson-databind-nullable>0.2.1</jackson-databind-nullable>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <springdoc-openapi-ui.version>1.5.6</springdoc-openapi-ui.version>
         <commons-validator.version>1.7</commons-validator.version>
-        <hibernate-jpamodelgen.version>5.4.10.Final</hibernate-jpamodelgen.version>
+        <hibernate-jpamodelgen.version>5.5.5.Final</hibernate-jpamodelgen.version>
         <jacoco.version>0.8.3</jacoco.version>
     </properties>
 
@@ -84,6 +84,11 @@
             <groupId>org.openapitools</groupId>
             <artifactId>jackson-databind-nullable</artifactId>
             <version>${jackson-databind-nullable}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>3.0.0</version>
         </dependency>
 
         <!-- Misc -->
