@@ -1,3 +1,6 @@
+server:
+  port: 8282
 spring:
   liquibase:
     changeLog: "classpath:/db/changelog/changelog-master.xml"
+

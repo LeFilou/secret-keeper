@@ -35,8 +35,7 @@ class CredentialControllerTest extends AbstractControllerTest {
     }
 
     @Nested
-    @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-    class when_creating_a_new_credential {
+    class WhenCreatingANewCredentialTestCase {
 
         @Test
         void returns_the_created_credential() {
@@ -92,8 +91,7 @@ class CredentialControllerTest extends AbstractControllerTest {
     }
 
     @Nested
-    @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-    class when_fetching_for_credentials {
+    class WhenFetchingForCredentialsTestCase {
 
         @Test
         void returns_empty_collection_if_no_credential_matches_the_criteria() {
@@ -110,8 +108,7 @@ class CredentialControllerTest extends AbstractControllerTest {
     }
 
     @Nested
-    @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-    class when_updating_credentials {
+    class WhenUpdatingCredentialsTestCase {
 
         @Test
         void returns_the_updated_credential() {
@@ -131,8 +128,7 @@ class CredentialControllerTest extends AbstractControllerTest {
     }
 
     @Nested
-    @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-    class when_deleting_credentials {
+    class WhenDeletingCredentialsTestCase {
 
         @Test
         void deletes_credential_and_returns_no_content() {

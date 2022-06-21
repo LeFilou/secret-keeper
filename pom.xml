@@ -10,9 +10,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <testcontainers.version>1.17.2</testcontainers.version>
         <lombok.version>1.18.24</lombok.version>
-        <rest-assured.version>5.1.1</rest-assured.version>
         <groovy.version>3.0.2</groovy.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <swagger-annotations-version>1.6.6</swagger-annotations-version>
@@ -22,7 +20,10 @@
         <springdoc-openapi-ui.version>1.5.6</springdoc-openapi-ui.version>
         <commons-validator.version>1.7</commons-validator.version>
         <hibernate-jpamodelgen.version>5.5.5.Final</hibernate-jpamodelgen.version>
+        <h2.version>2.1.210</h2.version>
         <jacoco.version>0.8.3</jacoco.version>
+        <rest-assured.version>5.1.1</rest-assured.version>
+        <testcontainers.version>1.17.2</testcontainers.version>
     </properties>
 
     <parent>
@@ -72,6 +73,11 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
             <version>${hibernate-jpamodelgen.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
         </dependency>
 
         <!-- Open Api -->
