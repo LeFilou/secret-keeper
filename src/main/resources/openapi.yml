@@ -11,6 +11,7 @@ tags:
     description: Manage your credentials
 paths:
   /credentials:
+
     post:
       tags:
         - credentials
@@ -37,6 +38,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/definitions/CredentialDetails'
+
     get:
       tags:
         - credentials
@@ -75,40 +77,9 @@ paths:
         name: credential-id
         in: path
         required: true
-    patch:
-      tags:
-        - credentials
-      summary: Update a credential
-      operationId: updateCredential
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CredentialDetails'
-        '404':
-          description: Not Found
-      description: Updates the credential
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NewCredentialData'
-            examples:
-              new-password:
-                value:
-                  password: changed-password
-    delete:
-      tags:
-        - credentials
-      summary: Delete a credential
-      operationId: deleteCredential
-      responses:
-        '204':
-          description: No Content
 components:
   schemas:
+
     CredentialDetails:
       type: object
       properties:
@@ -120,6 +91,7 @@ components:
           type: string
         password:
           type: string
+
     CredentialRequest:
       type: object
       properties:
@@ -133,6 +105,7 @@ components:
         - url
         - username
         - password
+
     NewCredentialData:
       title: NewCredentialData
       type: object

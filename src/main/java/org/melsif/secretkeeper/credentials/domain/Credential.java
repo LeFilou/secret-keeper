@@ -52,11 +52,6 @@ public class Credential implements Serializable {
         return credentialIdentifiers.getUsername();
     }
 
-    void changePassword(String newPassword) {
-        modificationDate = LocalDate.now();
-        password = newPassword;
-    }
-
     @Embeddable
     @NoArgsConstructor
     @Getter

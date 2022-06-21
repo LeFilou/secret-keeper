@@ -106,38 +106,4 @@ class CredentialControllerTest extends AbstractControllerTest {
                 .body("$.size()", equalTo(0));
         }
     }
-
-    @Nested
-    class WhenUpdatingCredentialsTestCase {
-
-        @Test
-        void returns_the_updated_credential() {
-            final long credentialId = 1L;
-            final String url = "http://url.com";
-            final String username = "slimoux";
-            final String newPassword = "new-password";
-            Mockito.when(credentialService.changePassword(credentialId, newPassword))
-                .thenReturn(Credential.newCredential(url, username, newPassword));
-
-            final NewCredentialData newCredentialData = new NewCredentialData().newPassword(newPassword);
-            given().contentType("application/json")
-                .body(newCredentialData)
-                .when().patch("/credentials/1")
-                .then().statusCode(200);
-        }
-    }
-
-    @Nested
-    class WhenDeletingCredentialsTestCase {
-
-        @Test
-        void deletes_credential_and_returns_no_content() {
-            final long credentialId = 1L;
-            given().contentType("application/json")
-                .when().delete("/credentials/" + credentialId)
-                .then().statusCode(204);
-            verify(credentialService, times(1))
-                .deleteCredential(credentialId);
-        }
-    }
 }

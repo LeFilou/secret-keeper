@@ -26,23 +26,4 @@ class RepositoryCredentialService implements CredentialService {
         final String usernamePattern = credentialSearchCriteria.getUsernamePattern();
         return credentials.findAll(urlContains(urlPattern).and(usernameContains(usernamePattern)));
     }
-
-    @Override
-    public Credential changePassword(long credentialId, String newPassword) {
-        var credential = credentials
-            .findOne(credentialId);
-        credential.changePassword(newPassword);
-        return credential;
-    }
-
-    @Override
-    public Credential findCredential(long credentialId) {
-        return credentials
-            .findOne(credentialId);
-    }
-
-    @Override
-    public void deleteCredential(long credentialId) {
-        credentials.delete(credentialId);
-    }
 }

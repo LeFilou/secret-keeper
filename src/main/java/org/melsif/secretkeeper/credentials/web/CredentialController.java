@@ -32,16 +32,4 @@ class CredentialController implements CredentialsApi {
             .collect(Collectors.toUnmodifiableList());
         return ResponseEntity.ok(credentials);
     }
-
-    @Override
-    public ResponseEntity<CredentialDetails> updateCredential(Long credentialId, @Valid NewCredentialData newCredentialData) {
-        var updatedCredential = credentialService.changePassword(credentialId, newCredentialData.getNewPassword());
-        return ResponseEntity.ok(credentialMapper.toCredentialDetails(updatedCredential));
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteCredential(Long credentialId) {
-        credentialService.deleteCredential(credentialId);
-        return ResponseEntity.noContent().build();
-    }
 }
