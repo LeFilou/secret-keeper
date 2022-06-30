@@ -220,7 +220,10 @@
                     <output>file</output>
                     <append>true</append>
                     <excludes>
-                        <exclude>org/melsif/secretkeeper/commons/*</exclude>
+                        <exclude>
+                            org/melsif/secretkeeper/commons/*,
+                            org/melsif/secretkeeper/actuator/*
+                        </exclude>
                         <exclude>org/melsif/secretkeeper/SecretKeeper.class</exclude>
                         <exclude>**/*Exception.*</exclude>
                     </excludes>
@@ -257,9 +260,11 @@
                 <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
                 <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
                 <sonar.language>java</sonar.language>
+                <sonar.sources>src/main/java</sonar.sources>
                 <sonar.exclusions>
-                    org/melsif/secretkeeper/commons/*,
-                    org/melsif/secretkeeper/SecretKeeper.class,
+                    **/commons/*.java,
+                    **/actuator/*.java,
+                    **/SecretKeeper.java,
                     **/*Exception.*
                 </sonar.exclusions>
             </properties>
