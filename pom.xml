@@ -219,7 +219,7 @@
                 <configuration>
                     <skip>${skipUnitTests}</skip>
                     <excludes>
-                        <exclude>**/*IntegrationTest.java</exclude>
+                        <exclude>**/*IntegrationTest*</exclude>
                     </excludes>
                 </configuration>
             </plugin>

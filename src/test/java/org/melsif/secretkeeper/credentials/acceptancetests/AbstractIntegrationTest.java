@@ -16,7 +16,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @Testcontainers
-
 public abstract class AbstractIntegrationTest {
 
     public static final String POSTGRES_IMAGE_NAME = "postgres:9.6.12";
