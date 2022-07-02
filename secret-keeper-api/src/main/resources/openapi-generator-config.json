@@ -1,7 +1,6 @@
 {
   "swaggerDocketConfig": "true",
   "java8": "true",
-  "dateLibrary": "java8",
   "useTags": "true",
   "generateApiTests": "true",
   "generateApiDocumentation": "true",
