@@ -17,9 +17,6 @@ import static org.springframework.http.HttpStatus.OK;
 @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:db/create-credentials.sql")
 class CredentialsIntegrationTest extends AbstractIntegrationTest {
 
-    @Autowired
-    CredentialService credentialService;
-
     @Nested
     class WhenFetchingForCredentialsTestCase {
 
