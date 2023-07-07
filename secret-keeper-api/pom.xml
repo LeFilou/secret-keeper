@@ -27,7 +27,7 @@
         <springfox-swagger2.version>3.0.0</springfox-swagger2.version>
         <commons-validator.version>1.7</commons-validator.version>
         <hibernate-jpamodelgen.version>5.5.5.Final</hibernate-jpamodelgen.version>
-        <h2.version>2.1.210</h2.version>
+        <h2.version>2.2.220</h2.version>
         <jacoco.version>0.8.3</jacoco.version>
         <rest-assured.version>5.1.1</rest-assured.version>
         <testcontainers.version>1.17.2</testcontainers.version>
